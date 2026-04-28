@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code — Cheatsheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Literata:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --coral: #C04F22;
+    --coral-light: #D85A30;
+    --coral-pale: #FAECE7;
+    --dark: #FDFAF6;
+    --dark2: #FAF6F0;
+    --dark3: #EDE5D8;
+    --mid: #C4A882;
+    --muted: #8C7060;
+    --tan: #5C3D28;
+    --cream: #2C1A0A;
+    --white: #1A0E05;
+    --mono: 'IBM Plex Mono', monospace;
+    --serif: 'Literata', Georgia, serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page {
+    size: A3 portrait;
+    margin: 0;
+  }
+
+  body {
+    font-family: var(--serif);
+    background: var(--dark);
+    color: var(--cream);
+    width: 297mm;
+    min-height: 420mm;
+    padding: 10mm 11mm;
+    font-size: 7.5pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 6mm;
+    padding-bottom: 4mm;
+    border-bottom: 0.5px solid var(--mid);
+  }
+
+  .logo-block {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+
+  .claude-mark {
+    width: 11mm;
+    height: 11mm;
+    flex-shrink: 0;
+  }
+
+  .header-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5mm;
+  }
+
+  .header-title h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 18pt;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .header-title h1 span {
+    color: var(--coral);
+    font-weight: 500;
+  }
+
+  .header-subtitle {
+    font-family: var(--mono);
+    font-size: 6pt;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .header-meta {
+    text-align: right;
+  }
+
+  .header-meta p {
+    font-family: var(--mono);
+    font-size: 5.5pt;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .header-meta a {
+    color: var(--coral-light);
+    text-decoration: none;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 58mm 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 4mm;
+  }
+
+  section {
+    background: var(--dark2);
+    border: 0.5px solid var(--dark3);
+    border-radius: 2mm;
+    padding: 3.5mm;
+  }
+
+  section.accent {
+    background: #FDF3EC;
+    border-color: #E8C4A8;
+  }
+
+  h2 {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 5.5pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--coral);
+    margin-bottom: 2.5mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.5px solid var(--dark3);
+  }
+
+  h3 {
+    font-family: var(--mono);
+    font-size: 5pt;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 2mm 0 1mm;
+  }
+
+  p {
+    color: var(--cream);
+    line-height: 1.5;
+    font-size: 7pt;
+  }
+
+  .term-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+  }
+
+  .term {
+    display: grid;
+    grid-template-columns: 17mm 1fr;
+    gap: 2mm;
+    align-items: start;
+  }
+
+  .term-key {
+    font-family: var(--mono);
+    font-size: 6pt;
+    font-weight: 500;
+    color: var(--white);
+    padding-top: 0.3mm;
+  }
+
+  .term-val {
+    font-size: 6.5pt;
+    color: var(--tan);
+    line-height: 1.4;
+  }
+
+  .cmd-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .cmd-table tr {
+    border-bottom: 0.5px solid #E8DDD0;
+  }
+
+  .cmd-table tr:last-child {
+    border-bottom: none;
+  }
+
+  .cmd-table td {
+    padding: 1.2mm 1mm;
+    vertical-align: top;
+    line-height: 1.35;
+  }
+
+  .cmd {
+    font-family: var(--mono);
+    font-size: 6pt;
+    font-weight: 500;
+    color: var(--coral-light);
+    white-space: nowrap;
+    padding-right: 1.5mm;
+    width: 1%;
+  }
+
+  .cmd-desc {
+    font-size: 6.2pt;
+    color: var(--cream);
+    opacity: 0.85;
+  }
+
+  .key-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .key-table tr {
+    border-bottom: 0.5px solid #E8DDD0;
+  }
+
+  .key-table tr:last-child { border-bottom: none; }
+
+  .key-table td {
+    padding: 1.2mm 1mm;
+    vertical-align: middle;
+    line-height: 1.3;
+  }
+
+  .key-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5mm;
+    font-family: var(--mono);
+    font-size: 5.5pt;
+    color: var(--dark2);
+    background: #5C3D28;
+    border-radius: 0.8mm;
+    padding: 0.3mm 1.2mm;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .key-desc {
+    font-size: 6.2pt;
+    color: var(--cream);
+    opacity: 0.85;
+    padding-left: 1mm;
+  }
+
+  .code-block {
+    background: #F0E8DC;
+    border: 0.5px solid #D4C0A8;
+    border-radius: 1.5mm;
+    padding: 2mm 2.5mm;
+    font-family: var(--mono);
+    font-size: 6pt;
+    color: var(--cream);
+    line-height: 1.7;
+    margin-top: 2mm;
+  }
+
+  .code-block .comment { color: var(--muted); }
+  .code-block .cmd-text { color: var(--coral-light); }
+  .code-block .flag { color: #0F6E56; }
+  .code-block .str { color: #854F0B; }
+
+  .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 5pt;
+    padding: 0.3mm 1.5mm;
+    border-radius: 1mm;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .badge-coral { background: #FAECE7; color: #993C1D; border: 0.5px solid #D85A30; }
+  .badge-teal  { background: #E1F5EE; color: #0F6E56; border: 0.5px solid #1D9E75; }
+  .badge-amber { background: #FAEEDA; color: #854F0B; border: 0.5px solid #BA7517; }
+
+  .tip-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+  }
+
+  .tip {
+    display: grid;
+    grid-template-columns: 5mm 1fr;
+    gap: 1.5mm;
+    align-items: start;
+  }
+
+  .tip-num {
+    font-family: var(--mono);
+    font-size: 5.5pt;
+    color: var(--coral);
+    font-weight: 500;
+    padding-top: 0.5mm;
+  }
+
+  .tip-text {
+    font-size: 6.5pt;
+    color: var(--tan);
+    line-height: 1.4;
+  }
+
+  .tip-text code {
+    font-family: var(--mono);
+    font-size: 5.5pt;
+    color: var(--coral-light);
+    background: var(--dark);
+    padding: 0.2mm 0.8mm;
+    border-radius: 0.5mm;
+  }
+
+  .modes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2mm;
+    margin-top: 1mm;
+  }
+
+  .mode-card {
+    background: #F5EDE0;
+    border: 0.5px solid #D4C0A8;
+    border-radius: 1.5mm;
+    padding: 2mm;
+  }
+
+  .mode-name {
+    font-family: var(--mono);
+    font-size: 5.5pt;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 1mm;
+  }
+
+  .mode-desc {
+    font-size: 6pt;
+    color: var(--tan);
+    line-height: 1.4;
+  }
+
+  .mode-trigger {
+    font-family: var(--mono);
+    font-size: 5pt;
+    color: var(--muted);
+    margin-top: 1mm;
+  }
+
+  .ref-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5mm;
+    margin-top: 1mm;
+  }
+
+  .ref-row {
+    display: grid;
+    grid-template-columns: 28mm 1fr;
+    gap: 1.5mm;
+    align-items: start;
+  }
+
+  .ref-syntax {
+    font-family: var(--mono);
+    font-size: 5.5pt;
+    color: #0F6E56;
+    padding-top: 0.3mm;
+    line-height: 1.4;
+  }
+
+  .ref-desc {
+    font-size: 6pt;
+    color: var(--tan);
+    line-height: 1.4;
+  }
+
+  .model-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5mm;
+    margin-top: 1mm;
+  }
+
+  .model-entry {
+    display: grid;
+    grid-template-columns: 20mm 1fr auto;
+    gap: 1.5mm;
+    align-items: center;
+    background: #F5EDE0;
+    border: 0.5px solid #D4C0A8;
+    border-radius: 1mm;
+    padding: 1.5mm 2mm;
+  }
+
+  .model-name {
+    font-family: var(--mono);
+    font-size: 5.5pt;
+    color: var(--coral-light);
+    font-weight: 500;
+  }
+
+  .model-desc {
+    font-size: 6pt;
+    color: var(--tan);
+  }
+
+  footer {
+    margin-top: 4mm;
+    padding-top: 3mm;
+    border-top: 0.5px solid var(--dark3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 5pt;
+    color: var(--muted);
+  }
+
+  footer a {
+    color: var(--coral-light);
+    text-decoration: none;
+  }
+
+  .col-span-2 { grid-column: span 2; }
+  .col-span-3 { grid-column: span 3; }
+
+  @media print {
+    body { background: var(--dark) !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <svg class="claude-mark" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="44" height="44" rx="10" fill="#FAECE7"/>
+      <path d="M22 8C14.268 8 8 14.268 8 22C8 29.732 14.268 36 22 36C29.732 36 36 29.732 36 22" stroke="#D85A30" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M22 8C25.5 8 28.5 9.5 30.5 12L36 22" stroke="#F0997B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="22" cy="22" r="3.5" fill="#D85A30"/>
+    </svg>
+    <div class="header-title">
+      <h1>Claude <span>Code</span></h1>
+      <p class="header-subtitle">Entry &amp; Mid-Level Cheatsheet &mdash; A3</p>
+    </div>
+  </div>
+  <div class="header-meta">
+    <p>Source: <a href="https://support.claude.com/en/articles/14553413-claude-code-cheatsheet">support.claude.com</a> &nbsp;&middot;&nbsp; <a href="https://docs.claude.com/en/docs/claude-code/overview">docs.claude.com</a></p>
+    <p>Claude Code v2.x &nbsp;&middot;&nbsp; Models: Sonnet 4.6 &nbsp;/&nbsp; Haiku 4.5 &nbsp;/&nbsp; Opus 4.6</p>
+  </div>
+</header>
+
+<div class="grid">
+
+  <section>
+    <h2>Install &amp; Launch</h2>
+    <div class="code-block">
+      <span class="comment"># macOS / Linux / WSL</span><br>
+      <span class="cmd-text">curl</span> <span class="flag">-fsSL</span> https://claude.ai/install.sh <span class="flag">|</span> sh<br><br>
+      <span class="comment"># Or via npm (any OS)</span><br>
+      <span class="cmd-text">npm install</span> <span class="flag">-g</span> <span class="str">@anthropic-ai/claude-code</span><br><br>
+      <span class="comment"># Verify</span><br>
+      <span class="cmd-text">claude</span> <span class="flag">--version</span><br><br>
+      <span class="comment"># Launch interactive session</span><br>
+      <span class="cmd-text">claude</span><br><br>
+      <span class="comment"># Launch with initial prompt</span><br>
+      <span class="cmd-text">claude</span> <span class="str">"summarize this project"</span><br><br>
+      <span class="comment"># Headless / scripting mode</span><br>
+      <span class="cmd-text">claude</span> <span class="flag">-p</span> <span class="str">"explain this function"</span><br><br>
+      <span class="comment"># Continue last session</span><br>
+      <span class="cmd-text">claude</span> <span class="flag">--continue</span><br><br>
+      <span class="comment"># Switch model at launch</span><br>
+      <span class="cmd-text">claude</span> <span class="flag">--model</span> sonnet<br>
+      <span class="cmd-text">claude</span> <span class="flag">--model</span> haiku<br>
+      <span class="cmd-text">claude</span> <span class="flag">--model</span> opus
+    </div>
+  </section>
+
+  <section class="col-span-2">
+    <h2>Key Concepts</h2>
+    <div class="term-list">
+      <div class="term">
+        <span class="term-key">Session</span>
+        <span class="term-val">One run of <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">claude</code> from launch to exit. Each session has its own conversation history. Project memory (<code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">CLAUDE.md</code>) persists <em>across</em> sessions.</span>
+      </div>
+      <div class="term">
+        <span class="term-key">Context window</span>
+        <span class="term-val">The total text — your prompts, Claude's replies, files read — the model holds at once. Fills up over time; managed with <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/clear</code> and <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/compact</code>.</span>
+      </div>
+      <div class="term">
+        <span class="term-key">Token</span>
+        <span class="term-val">Unit for measuring text (~¾ of a word). Usage limits and API billing are counted in tokens. Monitor with <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/cost</code>.</span>
+      </div>
+      <div class="term">
+        <span class="term-key">CLAUDE.md</span>
+        <span class="term-val">Markdown file Claude reads at session start. Holds project conventions, commands, constraints. Lives in project root, home dir, or subfolder. Create with <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/init</code>.</span>
+      </div>
+      <div class="term">
+        <span class="term-key">Plan Mode</span>
+        <span class="term-val">Read-only mode: Claude explores and proposes but will not edit files or run commands. Toggle: <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">Shift+Tab</code> or <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/plan</code>.</span>
+      </div>
+      <div class="term">
+        <span class="term-key">Accept Edits</span>
+        <span class="term-val">Auto-approves file edits for the rest of the session; shell commands still prompt. Toggle: <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">Shift+Tab</code>.</span>
+      </div>
+      <div class="term">
+        <span class="term-key">MCP</span>
+        <span class="term-val">Model Context Protocol — open standard for plugging external systems (GitHub, Jira, databases) into Claude as tools. Managed via <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/mcp</code>.</span>
+      </div>
+      <div class="term">
+        <span class="term-key">Hook</span>
+        <span class="term-val">Shell command that runs automatically at lifecycle events (before a tool, after an edit). Used for auto-formatting, linting, or blocking unsafe commands.</span>
+      </div>
+      <div class="term">
+        <span class="term-key">Skill</span>
+        <span class="term-val">Packaged instructions + helper files that teach Claude a specific workflow (generate PDF, scaffold component, deploy). Invocable like slash commands; can also auto-activate.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-span-2">
+    <h2>Slash Commands</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 4mm;">
+      <div>
+        <h3>Session</h3>
+        <table class="cmd-table">
+          <tr><td class="cmd">/help</td><td class="cmd-desc">List all available commands (built-in + custom + MCP)</td></tr>
+          <tr><td class="cmd">/clear</td><td class="cmd-desc">Wipe conversation history, start fresh. Aliases: <code style="font-family:var(--mono);font-size:5.5pt;color:var(--muted)">/reset</code>, <code style="font-family:var(--mono);font-size:5.5pt;color:var(--muted)">/new</code></td></tr>
+          <tr><td class="cmd">/compact</td><td class="cmd-desc">Summarize conversation to free up context. Accepts focus instructions</td></tr>
+          <tr><td class="cmd">/rewind</td><td class="cmd-desc">Roll conversation (and optionally code) back to earlier checkpoint</td></tr>
+          <tr><td class="cmd">/resume</td><td class="cmd-desc">Reopen a previous session. Alias: <code style="font-family:var(--mono);font-size:5.5pt;color:var(--muted)">/continue</code></td></tr>
+          <tr><td class="cmd">/exit</td><td class="cmd-desc">Quit the CLI. Alias: <code style="font-family:var(--mono);font-size:5.5pt;color:var(--muted)">/quit</code></td></tr>
+          <tr><td class="cmd">/plan</td><td class="cmd-desc">Enter Plan Mode (read-only). Optionally pass a task description</td></tr>
+          <tr><td class="cmd">/btw</td><td class="cmd-desc">Ask a quick side question without consuming main context</td></tr>
+        </table>
+        <h3>Context &amp; Memory</h3>
+        <table class="cmd-table">
+          <tr><td class="cmd">/context</td><td class="cmd-desc">Visualize what's loaded in the context window and where it's spent</td></tr>
+          <tr><td class="cmd">/cost</td><td class="cmd-desc">Show token usage and spend for this session</td></tr>
+          <tr><td class="cmd">/usage</td><td class="cmd-desc">Show plan limits and current rate-limit status</td></tr>
+          <tr><td class="cmd">/memory</td><td class="cmd-desc">View or edit the CLAUDE.md files in scope</td></tr>
+          <tr><td class="cmd">/init</td><td class="cmd-desc">Explore codebase and generate a starter CLAUDE.md</td></tr>
+          <tr><td class="cmd">/add-dir</td><td class="cmd-desc">Grant Claude file access to an additional directory</td></tr>
+        </table>
+        <h3>Diff &amp; Export</h3>
+        <table class="cmd-table">
+          <tr><td class="cmd">/diff</td><td class="cmd-desc">Interactive viewer of uncommitted changes and per-turn diffs</td></tr>
+          <tr><td class="cmd">/copy</td><td class="cmd-desc">Copy last response (or selected code block) to clipboard</td></tr>
+          <tr><td class="cmd">/export</td><td class="cmd-desc">Save the current conversation to a file or clipboard</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>Config &amp; System</h3>
+        <table class="cmd-table">
+          <tr><td class="cmd">/config</td><td class="cmd-desc">Open configuration settings (theme, defaults, editor). Alias: <code style="font-family:var(--mono);font-size:5.5pt;color:var(--muted)">/settings</code></td></tr>
+          <tr><td class="cmd">/model</td><td class="cmd-desc">View or switch the active model (sonnet / haiku / opus)</td></tr>
+          <tr><td class="cmd">/permissions</td><td class="cmd-desc">View or change which tools require approval</td></tr>
+          <tr><td class="cmd">/status</td><td class="cmd-desc">Show account, model, working directory, version</td></tr>
+          <tr><td class="cmd">/doctor</td><td class="cmd-desc">Diagnose install and environment issues</td></tr>
+          <tr><td class="cmd">/login</td><td class="cmd-desc">Authenticate or switch accounts</td></tr>
+          <tr><td class="cmd">/logout</td><td class="cmd-desc">Sign out</td></tr>
+          <tr><td class="cmd">/bug</td><td class="cmd-desc">Report issue to Anthropic with session context. Alias: <code style="font-family:var(--mono);font-size:5.5pt;color:var(--muted)">/feedback</code></td></tr>
+        </table>
+        <h3>Extend</h3>
+        <table class="cmd-table">
+          <tr><td class="cmd">/mcp</td><td class="cmd-desc">Manage MCP server connections and authentication</td></tr>
+          <tr><td class="cmd">/agents</td><td class="cmd-desc">List, create, or edit subagents</td></tr>
+          <tr><td class="cmd">/hooks</td><td class="cmd-desc">View hook configuration for tool events</td></tr>
+          <tr><td class="cmd">/skills</td><td class="cmd-desc">List skills available in this session</td></tr>
+          <tr><td class="cmd">/simplify</td><td class="cmd-desc">Bundled skill: review recently changed files for quality and efficiency</td></tr>
+        </table>
+        <h3>Custom Commands</h3>
+        <div class="code-block" style="margin-top:1.5mm;">
+          <span class="comment"># Create a custom command:</span><br>
+          <span class="comment"># .claude/commands/review.md</span><br>
+          <span class="comment"># ~/.claude/commands/deploy.md</span><br><br>
+          <span class="comment"># Then invoke:</span><br>
+          <span class="cmd-text">/review</span>&nbsp;&nbsp;&nbsp;<span class="comment"># runs your markdown prompt</span><br>
+          <span class="cmd-text">/deploy</span>&nbsp;&nbsp;&nbsp;<span class="comment"># project or personal scope</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Keyboard Shortcuts</h2>
+    <table class="key-table" style="width:100%">
+      <tr><td><span class="key-badge">Shift Tab</span></td><td class="key-desc">Cycle permission mode:<br><em>Default → Accept Edits → Plan</em></td></tr>
+      <tr><td><span class="key-badge">Esc</span></td><td class="key-desc">Interrupt Claude mid-response</td></tr>
+      <tr><td><span class="key-badge">Esc Esc</span></td><td class="key-desc">Jump back and edit previous message</td></tr>
+      <tr><td><span class="key-badge">Ctrl C</span></td><td class="key-desc">Cancel input, or exit on empty prompt</td></tr>
+      <tr><td><span class="key-badge">Ctrl R</span></td><td class="key-desc">Expand to verbose full transcript view</td></tr>
+      <tr><td><span class="key-badge">↑ / ↓</span></td><td class="key-desc">Scroll through prompt history</td></tr>
+      <tr><td><span class="key-badge">@</span> + path</td><td class="key-desc">Reference file or directory in prompt</td></tr>
+      <tr><td><span class="key-badge">#</span> + text</td><td class="key-desc">Save instruction to CLAUDE.md</td></tr>
+      <tr><td><span class="key-badge">/</span></td><td class="key-desc">Open slash command menu</td></tr>
+      <tr><td><span class="key-badge">?</span></td><td class="key-desc">Show shortcuts for current terminal/IDE</td></tr>
+    </table>
+
+    <h2 style="margin-top:3mm">@ References</h2>
+    <div class="ref-list">
+      <div class="ref-row"><span class="ref-syntax">@README.md</span><span class="ref-desc">Include a specific file in prompt</span></div>
+      <div class="ref-row"><span class="ref-syntax">@src/components/</span><span class="ref-desc">Include an entire directory</span></div>
+      <div class="ref-row"><span class="ref-syntax">@https://example.com</span><span class="ref-desc">Fetch a URL (read-only)</span></div>
+    </div>
+    <p style="font-size:5.5pt;color:var(--muted);margin-top:1.5mm;font-style:italic">Prefer @ over pasting — Claude tokenizes better &amp; paths appear in audit log.</p>
+
+    <h2 style="margin-top:3mm">Pipe &amp; Headless</h2>
+    <div class="code-block">
+      <span class="comment"># Pipe output into Claude</span><br>
+      <span class="cmd-text">git log</span> <span class="flag">--oneline</span> <span class="flag">|</span> <span class="cmd-text">claude</span> <span class="flag">-p</span> <span class="str">"summarize"</span><br>
+      <span class="cmd-text">cat</span> error.log <span class="flag">|</span> <span class="cmd-text">claude</span> <span class="flag">-p</span> <span class="str">"find root cause"</span><br><br>
+      <span class="comment"># JSON output for scripting</span><br>
+      <span class="cmd-text">claude</span> <span class="flag">-p</span> <span class="str">"analyze"</span> <span class="flag">--output-format</span> json<br><br>
+      <span class="comment"># Limit turns (cheap CI checks)</span><br>
+      <span class="cmd-text">claude</span> <span class="flag">-p</span> <span class="flag">--max-turns</span> 3 <span class="str">"lint check"</span><br><br>
+      <span class="comment"># Budget cap (prevent runaway cost)</span><br>
+      <span class="cmd-text">claude</span> <span class="flag">-p</span> <span class="str">"fix tests"</span> <span class="flag">--max-budget-usd</span> 2.00
+    </div>
+  </section>
+
+  <section>
+    <h2>Permission Modes</h2>
+    <div class="modes-grid">
+      <div class="mode-card">
+        <div class="mode-name">Default</div>
+        <div class="mode-desc">Claude asks before every file edit and shell command. Safest for unfamiliar codebases.</div>
+        <div class="mode-trigger">cycle: Shift+Tab</div>
+      </div>
+      <div class="mode-card">
+        <div class="mode-name">Accept Edits</div>
+        <div class="mode-desc">File edits auto-approved; shell commands still prompt. Use once direction is trusted.</div>
+        <div class="mode-trigger">cycle: Shift+Tab</div>
+      </div>
+      <div class="mode-card" style="grid-column:span 2;">
+        <div class="mode-name">Plan Mode &nbsp;<span class="badge badge-teal">read-only</span></div>
+        <div class="mode-desc">Claude can explore files and reason about the problem but cannot edit files or run commands. Review the plan, then exit Plan Mode to execute. Enter with <code style="font-family:var(--mono);font-size:5pt;color:var(--coral-light)">/plan</code> or Shift+Tab.</div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:3mm">Models</h2>
+    <div class="model-row">
+      <div class="model-entry">
+        <span class="model-name">Sonnet 4.6</span>
+        <span class="model-desc">Best default. Strong on most tasks</span>
+        <span class="badge badge-coral">recommended</span>
+      </div>
+      <div class="model-entry">
+        <span class="model-name">Haiku 4.5</span>
+        <span class="model-desc">Fastest &amp; cheapest. Simple tasks</span>
+        <span class="badge badge-teal">fast</span>
+      </div>
+      <div class="model-entry">
+        <span class="model-name">Opus 4.6</span>
+        <span class="model-desc">Most capable. Complex multi-step reasoning</span>
+        <span class="badge badge-amber">powerful</span>
+      </div>
+    </div>
+    <div class="code-block" style="margin-top:2mm">
+      <span class="comment"># Switch model mid-session</span><br>
+      <span class="cmd-text">/model</span><br><br>
+      <span class="comment"># Or at launch</span><br>
+      <span class="cmd-text">claude</span> <span class="flag">--model</span> haiku
+    </div>
+  </section>
+
+  <section>
+    <h2>CLAUDE.md — Project Memory</h2>
+    <p style="font-size:6pt;color:var(--tan);margin-bottom:2mm">Claude reads this file automatically at the start of every session. Survives <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/compact</code>. The single most powerful way to make Claude feel like it already knows your project.</p>
+    <div class="code-block">
+      <span class="comment"># Locations (all are read if present)</span><br>
+      ~/.claude/CLAUDE.md &nbsp;&nbsp;<span class="comment"># personal global</span><br>
+      ./CLAUDE.md &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># project root</span><br>
+      ./src/CLAUDE.md &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># subfolder override</span>
+    </div>
+    <h3 style="margin-top:2mm">Recommended sections</h3>
+    <div class="code-block">
+      <span class="str"># Project rules</span><br>
+      <span class="comment">## Stack</span><br>
+      - Next.js 16, TypeScript, Tailwind<br>
+      - Postgres via Prisma<br><br>
+      <span class="comment">## Conventions</span><br>
+      - Server components by default<br>
+      - Tests: foo.ts + foo.test.ts<br><br>
+      <span class="comment">## Commands</span><br>
+      - npm run dev &nbsp;&mdash; local server<br>
+      - npm test &nbsp;&nbsp;&nbsp;&mdash; run tests<br><br>
+      <span class="comment">## Do not</span><br>
+      - Add deps without asking first
+    </div>
+    <h3 style="margin-top:2mm">Quick shortcuts</h3>
+    <table class="cmd-table">
+      <tr><td class="cmd">/init</td><td class="cmd-desc">Generate starter CLAUDE.md from codebase scan</td></tr>
+      <tr><td class="cmd">/memory</td><td class="cmd-desc">View / edit all CLAUDE.md files in scope</td></tr>
+      <tr><td class="cmd"># convention</td><td class="cmd-desc">Type # during a session to save to CLAUDE.md instantly</td></tr>
+    </table>
+  </section>
+
+  <section class="accent">
+    <h2>Entry-Level Tips</h2>
+    <div class="tip-list">
+      <div class="tip"><span class="tip-num">01</span><span class="tip-text">Before starting a big task, use <code>/plan</code> to review Claude's approach. Exit Plan Mode to execute only when satisfied — this prevents runaway edits.</span></div>
+      <div class="tip"><span class="tip-num">02</span><span class="tip-text">Run <code>/init</code> in every new project. A well-written CLAUDE.md is worth more than a long prompt — it persists across sessions and survives context compaction.</span></div>
+      <div class="tip"><span class="tip-num">03</span><span class="tip-text">When the context feels stale or confused, use <code>/clear</code> to reset history while keeping project memory, or <code>/compact</code> to summarize and free space without losing the thread.</span></div>
+      <div class="tip"><span class="tip-num">04</span><span class="tip-text">Use <code>@file.py</code> to reference files rather than pasting code. Claude tokenizes file-loaded content more efficiently and paths appear in the audit log.</span></div>
+      <div class="tip"><span class="tip-num">05</span><span class="tip-text">Use <code>/rewind</code> if Claude goes off-track mid-task. It rolls back the conversation (and optionally the code state) to an earlier checkpoint — the undo button for agentic work.</span></div>
+      <div class="tip"><span class="tip-num">06</span><span class="tip-text">Run <code>/cost</code> after longer sessions to build intuition for token consumption. Use Haiku for simple queries and linting; save Sonnet/Opus for complex reasoning tasks.</span></div>
+      <div class="tip"><span class="tip-num">07</span><span class="tip-text">Add <code>CLAUDE_CODE_NO_FLICKER=1</code> to your shell profile for smoother terminal rendering — output streams line-by-line without screen redraws.</span></div>
+      <div class="tip"><span class="tip-num">08</span><span class="tip-text">Pipe output into Claude for quick analysis: <code>cat error.log | claude -p "find root cause"</code>. The <code>-p</code> flag runs in headless mode and exits automatically.</span></div>
+      <div class="tip"><span class="tip-num">09</span><span class="tip-text">If Claude seems stuck or unhealthy, run <code>/doctor</code> to diagnose the installation, and <code>/bug</code> to report issues with session context attached automatically.</span></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>Official source &nbsp;&middot;&nbsp; <a href="https://support.claude.com/en/articles/14553413-claude-code-cheatsheet">support.claude.com/en/articles/14553413-claude-code-cheatsheet</a> &nbsp;&middot;&nbsp; <a href="https://docs.claude.com/en/docs/claude-code/overview">docs.claude.com</a></p>
+  <p>&copy; Shimon Shmueli &nbsp;&middot;&nbsp; Print at A3 &nbsp;&middot;&nbsp; Portrait &nbsp;&middot;&nbsp; Margins: none &nbsp;&middot;&nbsp; Background graphics: on</p>
+</footer>
+
+</body>
+</html>
