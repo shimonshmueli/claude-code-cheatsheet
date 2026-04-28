@@ -32,4 +32,4 @@ Open `index.html` in Chrome or Firefox, then:
 
 ## License
 
-© Shimon Shmueli
+MIT License — compiled by Shimon Shmueli. See [LICENSE](./LICENSE) for full text.

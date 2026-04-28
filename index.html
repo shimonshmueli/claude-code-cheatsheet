@@ -23,14 +23,8 @@
     --mono: 'IBM Plex Mono', monospace;
     --serif: 'Literata', Georgia, serif;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  @page {
-    size: A3 portrait;
-    margin: 0;
-  }
-
+  @page { size: A3 portrait; margin: 0; }
   body {
     font-family: var(--serif);
     background: var(--dark);
@@ -43,7 +37,6 @@
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-
   header {
     display: flex;
     align-items: flex-end;
@@ -52,25 +45,9 @@
     padding-bottom: 4mm;
     border-bottom: 0.5px solid var(--mid);
   }
-
-  .logo-block {
-    display: flex;
-    align-items: center;
-    gap: 3mm;
-  }
-
-  .claude-mark {
-    width: 11mm;
-    height: 11mm;
-    flex-shrink: 0;
-  }
-
-  .header-title {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5mm;
-  }
-
+  .logo-block { display: flex; align-items: center; gap: 3mm; }
+  .claude-mark { width: 11mm; height: 11mm; flex-shrink: 0; }
+  .header-title { display: flex; flex-direction: column; gap: 0.5mm; }
   .header-title h1 {
     font-family: var(--serif);
     font-weight: 300;
@@ -79,12 +56,7 @@
     color: var(--white);
     line-height: 1;
   }
-
-  .header-title h1 span {
-    color: var(--coral);
-    font-weight: 500;
-  }
-
+  .header-title h1 span { color: var(--coral); font-weight: 500; }
   .header-subtitle {
     font-family: var(--mono);
     font-size: 6pt;
@@ -92,42 +64,22 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
-
-  .header-meta {
-    text-align: right;
-  }
-
-  .header-meta p {
-    font-family: var(--mono);
-    font-size: 5.5pt;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .header-meta a {
-    color: var(--coral-light);
-    text-decoration: none;
-  }
-
+  .header-meta { text-align: right; }
+  .header-meta p { font-family: var(--mono); font-size: 5.5pt; color: var(--muted); line-height: 1.6; }
+  .header-meta a { color: var(--coral-light); text-decoration: none; }
   .grid {
     display: grid;
     grid-template-columns: 58mm 1fr 1fr;
     grid-template-rows: auto;
     gap: 4mm;
   }
-
   section {
     background: var(--dark2);
     border: 0.5px solid var(--dark3);
     border-radius: 2mm;
     padding: 3.5mm;
   }
-
-  section.accent {
-    background: #FDF3EC;
-    border-color: #E8C4A8;
-  }
-
+  section.accent { background: #FDF3EC; border-color: #E8C4A8; }
   h2 {
     font-family: var(--mono);
     font-weight: 500;
@@ -139,7 +91,6 @@
     padding-bottom: 1.5mm;
     border-bottom: 0.5px solid var(--dark3);
   }
-
   h3 {
     font-family: var(--mono);
     font-size: 5pt;
@@ -149,92 +100,21 @@
     text-transform: uppercase;
     margin: 2mm 0 1mm;
   }
-
-  p {
-    color: var(--cream);
-    line-height: 1.5;
-    font-size: 7pt;
-  }
-
-  .term-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2mm;
-  }
-
-  .term {
-    display: grid;
-    grid-template-columns: 17mm 1fr;
-    gap: 2mm;
-    align-items: start;
-  }
-
-  .term-key {
-    font-family: var(--mono);
-    font-size: 6pt;
-    font-weight: 500;
-    color: var(--white);
-    padding-top: 0.3mm;
-  }
-
-  .term-val {
-    font-size: 6.5pt;
-    color: var(--tan);
-    line-height: 1.4;
-  }
-
-  .cmd-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .cmd-table tr {
-    border-bottom: 0.5px solid #E8DDD0;
-  }
-
-  .cmd-table tr:last-child {
-    border-bottom: none;
-  }
-
-  .cmd-table td {
-    padding: 1.2mm 1mm;
-    vertical-align: top;
-    line-height: 1.35;
-  }
-
-  .cmd {
-    font-family: var(--mono);
-    font-size: 6pt;
-    font-weight: 500;
-    color: var(--coral-light);
-    white-space: nowrap;
-    padding-right: 1.5mm;
-    width: 1%;
-  }
-
-  .cmd-desc {
-    font-size: 6.2pt;
-    color: var(--cream);
-    opacity: 0.85;
-  }
-
-  .key-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .key-table tr {
-    border-bottom: 0.5px solid #E8DDD0;
-  }
-
+  p { color: var(--cream); line-height: 1.5; font-size: 7pt; }
+  .term-list { display: flex; flex-direction: column; gap: 2mm; }
+  .term { display: grid; grid-template-columns: 17mm 1fr; gap: 2mm; align-items: start; }
+  .term-key { font-family: var(--mono); font-size: 6pt; font-weight: 500; color: var(--white); padding-top: 0.3mm; }
+  .term-val { font-size: 6.5pt; color: var(--tan); line-height: 1.4; }
+  .cmd-table { width: 100%; border-collapse: collapse; }
+  .cmd-table tr { border-bottom: 0.5px solid #E8DDD0; }
+  .cmd-table tr:last-child { border-bottom: none; }
+  .cmd-table td { padding: 1.2mm 1mm; vertical-align: top; line-height: 1.35; }
+  .cmd { font-family: var(--mono); font-size: 6pt; font-weight: 500; color: var(--coral-light); white-space: nowrap; padding-right: 1.5mm; width: 1%; }
+  .cmd-desc { font-size: 6.2pt; color: var(--cream); opacity: 0.85; }
+  .key-table { width: 100%; border-collapse: collapse; }
+  .key-table tr { border-bottom: 0.5px solid #E8DDD0; }
   .key-table tr:last-child { border-bottom: none; }
-
-  .key-table td {
-    padding: 1.2mm 1mm;
-    vertical-align: middle;
-    line-height: 1.3;
-  }
-
+  .key-table td { padding: 1.2mm 1mm; vertical-align: middle; line-height: 1.3; }
   .key-badge {
     display: inline-flex;
     align-items: center;
@@ -248,14 +128,7 @@
     white-space: nowrap;
     font-weight: 500;
   }
-
-  .key-desc {
-    font-size: 6.2pt;
-    color: var(--cream);
-    opacity: 0.85;
-    padding-left: 1mm;
-  }
-
+  .key-desc { font-size: 6.2pt; color: var(--cream); opacity: 0.85; padding-left: 1mm; }
   .code-block {
     background: #F0E8DC;
     border: 0.5px solid #D4C0A8;
@@ -267,181 +140,38 @@
     line-height: 1.7;
     margin-top: 2mm;
   }
-
   .code-block .comment { color: var(--muted); }
   .code-block .cmd-text { color: var(--coral-light); }
   .code-block .flag { color: #0F6E56; }
   .code-block .str { color: #854F0B; }
-
-  .badge {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 5pt;
-    padding: 0.3mm 1.5mm;
-    border-radius: 1mm;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-  }
-
+  .badge { display: inline-block; font-family: var(--mono); font-size: 5pt; padding: 0.3mm 1.5mm; border-radius: 1mm; font-weight: 500; letter-spacing: 0.04em; }
   .badge-coral { background: #FAECE7; color: #993C1D; border: 0.5px solid #D85A30; }
   .badge-teal  { background: #E1F5EE; color: #0F6E56; border: 0.5px solid #1D9E75; }
   .badge-amber { background: #FAEEDA; color: #854F0B; border: 0.5px solid #BA7517; }
-
-  .tip-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2mm;
-  }
-
-  .tip {
-    display: grid;
-    grid-template-columns: 5mm 1fr;
-    gap: 1.5mm;
-    align-items: start;
-  }
-
-  .tip-num {
-    font-family: var(--mono);
-    font-size: 5.5pt;
-    color: var(--coral);
-    font-weight: 500;
-    padding-top: 0.5mm;
-  }
-
-  .tip-text {
-    font-size: 6.5pt;
-    color: var(--tan);
-    line-height: 1.4;
-  }
-
-  .tip-text code {
-    font-family: var(--mono);
-    font-size: 5.5pt;
-    color: var(--coral-light);
-    background: var(--dark);
-    padding: 0.2mm 0.8mm;
-    border-radius: 0.5mm;
-  }
-
-  .modes-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2mm;
-    margin-top: 1mm;
-  }
-
-  .mode-card {
-    background: #F5EDE0;
-    border: 0.5px solid #D4C0A8;
-    border-radius: 1.5mm;
-    padding: 2mm;
-  }
-
-  .mode-name {
-    font-family: var(--mono);
-    font-size: 5.5pt;
-    font-weight: 500;
-    color: var(--white);
-    margin-bottom: 1mm;
-  }
-
-  .mode-desc {
-    font-size: 6pt;
-    color: var(--tan);
-    line-height: 1.4;
-  }
-
-  .mode-trigger {
-    font-family: var(--mono);
-    font-size: 5pt;
-    color: var(--muted);
-    margin-top: 1mm;
-  }
-
-  .ref-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5mm;
-    margin-top: 1mm;
-  }
-
-  .ref-row {
-    display: grid;
-    grid-template-columns: 28mm 1fr;
-    gap: 1.5mm;
-    align-items: start;
-  }
-
-  .ref-syntax {
-    font-family: var(--mono);
-    font-size: 5.5pt;
-    color: #0F6E56;
-    padding-top: 0.3mm;
-    line-height: 1.4;
-  }
-
-  .ref-desc {
-    font-size: 6pt;
-    color: var(--tan);
-    line-height: 1.4;
-  }
-
-  .model-row {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5mm;
-    margin-top: 1mm;
-  }
-
-  .model-entry {
-    display: grid;
-    grid-template-columns: 20mm 1fr auto;
-    gap: 1.5mm;
-    align-items: center;
-    background: #F5EDE0;
-    border: 0.5px solid #D4C0A8;
-    border-radius: 1mm;
-    padding: 1.5mm 2mm;
-  }
-
-  .model-name {
-    font-family: var(--mono);
-    font-size: 5.5pt;
-    color: var(--coral-light);
-    font-weight: 500;
-  }
-
-  .model-desc {
-    font-size: 6pt;
-    color: var(--tan);
-  }
-
-  footer {
-    margin-top: 4mm;
-    padding-top: 3mm;
-    border-top: 0.5px solid var(--dark3);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  footer p {
-    font-family: var(--mono);
-    font-size: 5pt;
-    color: var(--muted);
-  }
-
-  footer a {
-    color: var(--coral-light);
-    text-decoration: none;
-  }
-
+  .tip-list { display: flex; flex-direction: column; gap: 2mm; }
+  .tip { display: grid; grid-template-columns: 5mm 1fr; gap: 1.5mm; align-items: start; }
+  .tip-num { font-family: var(--mono); font-size: 5.5pt; color: var(--coral); font-weight: 500; padding-top: 0.5mm; }
+  .tip-text { font-size: 6.5pt; color: var(--tan); line-height: 1.4; }
+  .tip-text code { font-family: var(--mono); font-size: 5.5pt; color: var(--coral-light); background: var(--dark); padding: 0.2mm 0.8mm; border-radius: 0.5mm; }
+  .modes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; margin-top: 1mm; }
+  .mode-card { background: #F5EDE0; border: 0.5px solid #D4C0A8; border-radius: 1.5mm; padding: 2mm; }
+  .mode-name { font-family: var(--mono); font-size: 5.5pt; font-weight: 500; color: var(--white); margin-bottom: 1mm; }
+  .mode-desc { font-size: 6pt; color: var(--tan); line-height: 1.4; }
+  .mode-trigger { font-family: var(--mono); font-size: 5pt; color: var(--muted); margin-top: 1mm; }
+  .ref-list { display: flex; flex-direction: column; gap: 1.5mm; margin-top: 1mm; }
+  .ref-row { display: grid; grid-template-columns: 28mm 1fr; gap: 1.5mm; align-items: start; }
+  .ref-syntax { font-family: var(--mono); font-size: 5.5pt; color: #0F6E56; padding-top: 0.3mm; line-height: 1.4; }
+  .ref-desc { font-size: 6pt; color: var(--tan); line-height: 1.4; }
+  .model-row { display: flex; flex-direction: column; gap: 1.5mm; margin-top: 1mm; }
+  .model-entry { display: grid; grid-template-columns: 20mm 1fr auto; gap: 1.5mm; align-items: center; background: #F5EDE0; border: 0.5px solid #D4C0A8; border-radius: 1mm; padding: 1.5mm 2mm; }
+  .model-name { font-family: var(--mono); font-size: 5.5pt; color: var(--coral-light); font-weight: 500; }
+  .model-desc { font-size: 6pt; color: var(--tan); }
+  footer { margin-top: 4mm; padding-top: 3mm; border-top: 0.5px solid var(--dark3); display: flex; align-items: center; justify-content: space-between; }
+  footer p { font-family: var(--mono); font-size: 5pt; color: var(--muted); }
+  footer a { color: var(--coral-light); text-decoration: none; }
   .col-span-2 { grid-column: span 2; }
   .col-span-3 { grid-column: span 3; }
-
-  @media print {
-    body { background: var(--dark) !important; }
-  }
+  @media print { body { background: var(--dark) !important; } }
 </style>
 </head>
 <body>
@@ -494,42 +224,15 @@
   <section class="col-span-2">
     <h2>Key Concepts</h2>
     <div class="term-list">
-      <div class="term">
-        <span class="term-key">Session</span>
-        <span class="term-val">One run of <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">claude</code> from launch to exit. Each session has its own conversation history. Project memory (<code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">CLAUDE.md</code>) persists <em>across</em> sessions.</span>
-      </div>
-      <div class="term">
-        <span class="term-key">Context window</span>
-        <span class="term-val">The total text — your prompts, Claude's replies, files read — the model holds at once. Fills up over time; managed with <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/clear</code> and <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/compact</code>.</span>
-      </div>
-      <div class="term">
-        <span class="term-key">Token</span>
-        <span class="term-val">Unit for measuring text (~¾ of a word). Usage limits and API billing are counted in tokens. Monitor with <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/cost</code>.</span>
-      </div>
-      <div class="term">
-        <span class="term-key">CLAUDE.md</span>
-        <span class="term-val">Markdown file Claude reads at session start. Holds project conventions, commands, constraints. Lives in project root, home dir, or subfolder. Create with <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/init</code>.</span>
-      </div>
-      <div class="term">
-        <span class="term-key">Plan Mode</span>
-        <span class="term-val">Read-only mode: Claude explores and proposes but will not edit files or run commands. Toggle: <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">Shift+Tab</code> or <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/plan</code>.</span>
-      </div>
-      <div class="term">
-        <span class="term-key">Accept Edits</span>
-        <span class="term-val">Auto-approves file edits for the rest of the session; shell commands still prompt. Toggle: <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">Shift+Tab</code>.</span>
-      </div>
-      <div class="term">
-        <span class="term-key">MCP</span>
-        <span class="term-val">Model Context Protocol — open standard for plugging external systems (GitHub, Jira, databases) into Claude as tools. Managed via <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/mcp</code>.</span>
-      </div>
-      <div class="term">
-        <span class="term-key">Hook</span>
-        <span class="term-val">Shell command that runs automatically at lifecycle events (before a tool, after an edit). Used for auto-formatting, linting, or blocking unsafe commands.</span>
-      </div>
-      <div class="term">
-        <span class="term-key">Skill</span>
-        <span class="term-val">Packaged instructions + helper files that teach Claude a specific workflow (generate PDF, scaffold component, deploy). Invocable like slash commands; can also auto-activate.</span>
-      </div>
+      <div class="term"><span class="term-key">Session</span><span class="term-val">One run of <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">claude</code> from launch to exit. Each session has its own conversation history. Project memory (<code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">CLAUDE.md</code>) persists <em>across</em> sessions.</span></div>
+      <div class="term"><span class="term-key">Context window</span><span class="term-val">The total text — your prompts, Claude's replies, files read — the model holds at once. Fills up over time; managed with <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/clear</code> and <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/compact</code>.</span></div>
+      <div class="term"><span class="term-key">Token</span><span class="term-val">Unit for measuring text (~¾ of a word). Usage limits and API billing are counted in tokens. Monitor with <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/cost</code>.</span></div>
+      <div class="term"><span class="term-key">CLAUDE.md</span><span class="term-val">Markdown file Claude reads at session start. Holds project conventions, commands, constraints. Lives in project root, home dir, or subfolder. Create with <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/init</code>.</span></div>
+      <div class="term"><span class="term-key">Plan Mode</span><span class="term-val">Read-only mode: Claude explores and proposes but will not edit files or run commands. Toggle: <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">Shift+Tab</code> or <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/plan</code>.</span></div>
+      <div class="term"><span class="term-key">Accept Edits</span><span class="term-val">Auto-approves file edits for the rest of the session; shell commands still prompt. Toggle: <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">Shift+Tab</code>.</span></div>
+      <div class="term"><span class="term-key">MCP</span><span class="term-val">Model Context Protocol — open standard for plugging external systems (GitHub, Jira, databases) into Claude as tools. Managed via <code style="font-family:var(--mono);font-size:5.5pt;color:var(--coral-light)">/mcp</code>.</span></div>
+      <div class="term"><span class="term-key">Hook</span><span class="term-val">Shell command that runs automatically at lifecycle events (before a tool, after an edit). Used for auto-formatting, linting, or blocking unsafe commands.</span></div>
+      <div class="term"><span class="term-key">Skill</span><span class="term-val">Packaged instructions + helper files that teach Claude a specific workflow (generate PDF, scaffold component, deploy). Invocable like slash commands; can also auto-activate.</span></div>
     </div>
   </section>
 
@@ -611,7 +314,6 @@
       <tr><td><span class="key-badge">/</span></td><td class="key-desc">Open slash command menu</td></tr>
       <tr><td><span class="key-badge">?</span></td><td class="key-desc">Show shortcuts for current terminal/IDE</td></tr>
     </table>
-
     <h2 style="margin-top:3mm">@ References</h2>
     <div class="ref-list">
       <div class="ref-row"><span class="ref-syntax">@README.md</span><span class="ref-desc">Include a specific file in prompt</span></div>
@@ -619,7 +321,6 @@
       <div class="ref-row"><span class="ref-syntax">@https://example.com</span><span class="ref-desc">Fetch a URL (read-only)</span></div>
     </div>
     <p style="font-size:5.5pt;color:var(--muted);margin-top:1.5mm;font-style:italic">Prefer @ over pasting — Claude tokenizes better &amp; paths appear in audit log.</p>
-
     <h2 style="margin-top:3mm">Pipe &amp; Headless</h2>
     <div class="code-block">
       <span class="comment"># Pipe output into Claude</span><br>
@@ -652,24 +353,11 @@
         <div class="mode-desc">Claude can explore files and reason about the problem but cannot edit files or run commands. Review the plan, then exit Plan Mode to execute. Enter with <code style="font-family:var(--mono);font-size:5pt;color:var(--coral-light)">/plan</code> or Shift+Tab.</div>
       </div>
     </div>
-
     <h2 style="margin-top:3mm">Models</h2>
     <div class="model-row">
-      <div class="model-entry">
-        <span class="model-name">Sonnet 4.6</span>
-        <span class="model-desc">Best default. Strong on most tasks</span>
-        <span class="badge badge-coral">recommended</span>
-      </div>
-      <div class="model-entry">
-        <span class="model-name">Haiku 4.5</span>
-        <span class="model-desc">Fastest &amp; cheapest. Simple tasks</span>
-        <span class="badge badge-teal">fast</span>
-      </div>
-      <div class="model-entry">
-        <span class="model-name">Opus 4.6</span>
-        <span class="model-desc">Most capable. Complex multi-step reasoning</span>
-        <span class="badge badge-amber">powerful</span>
-      </div>
+      <div class="model-entry"><span class="model-name">Sonnet 4.6</span><span class="model-desc">Best default. Strong on most tasks</span><span class="badge badge-coral">recommended</span></div>
+      <div class="model-entry"><span class="model-name">Haiku 4.5</span><span class="model-desc">Fastest &amp; cheapest. Simple tasks</span><span class="badge badge-teal">fast</span></div>
+      <div class="model-entry"><span class="model-name">Opus 4.6</span><span class="model-desc">Most capable. Complex multi-step reasoning</span><span class="badge badge-amber">powerful</span></div>
     </div>
     <div class="code-block" style="margin-top:2mm">
       <span class="comment"># Switch model mid-session</span><br>
@@ -730,7 +418,7 @@
 
 <footer>
   <p>Official source &nbsp;&middot;&nbsp; <a href="https://support.claude.com/en/articles/14553413-claude-code-cheatsheet">support.claude.com/en/articles/14553413-claude-code-cheatsheet</a> &nbsp;&middot;&nbsp; <a href="https://docs.claude.com/en/docs/claude-code/overview">docs.claude.com</a></p>
-  <p>&copy; Shimon Shmueli &nbsp;&middot;&nbsp; Print at A3 &nbsp;&middot;&nbsp; Portrait &nbsp;&middot;&nbsp; Margins: none &nbsp;&middot;&nbsp; Background graphics: on</p>
+  <p>Compiled by Shimon Shmueli &nbsp;&middot;&nbsp; MIT License &nbsp;&middot;&nbsp; Print at A3 &nbsp;&middot;&nbsp; Portrait &nbsp;&middot;&nbsp; Margins: none &nbsp;&middot;&nbsp; Background graphics: on</p>
 </footer>
 
 </body>
